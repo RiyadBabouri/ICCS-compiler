@@ -37,6 +37,7 @@ COLON: ':';
 PLUS: '+';
 MIN: '-';
 MUL: '*';
+DIV: '/';
 ASSIGNMENT_OPERATOR: ':=';
 
 //--- PARSER: ---
@@ -49,5 +50,5 @@ property: LOWER_IDENT;
 value: COLOR #colorLiteral | PIXELSIZE #pixelLiteral | SCALAR #scalarLiteral | PERCENTAGE #percentageLiteral | (TRUE | FALSE) #boolLiteral;
 variableReference: CAPITAL_IDENT;
 expression: term ((PLUS | MIN) term)*;
-term: factor (MUL factor)*;
+term: factor ((MUL | DIV) factor)*;
 factor: (variableReference | value) | '(' expression ')';
