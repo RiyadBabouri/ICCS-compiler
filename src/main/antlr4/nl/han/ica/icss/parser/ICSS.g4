@@ -8,14 +8,12 @@ ELSE: 'else';
 BOX_BRACKET_OPEN: '[';
 BOX_BRACKET_CLOSE: ']';
 
-
 //Literals
 TRUE: 'TRUE';
 FALSE: 'FALSE';
 PIXELSIZE: [0-9]+ 'px';
 PERCENTAGE: [0-9]+ '%';
 SCALAR: [0-9]+;
-
 
 //Color value takes precedence over id idents
 COLOR: '#' [0-9a-f] [0-9a-f] [0-9a-f] [0-9a-f] [0-9a-f] [0-9a-f];
@@ -43,12 +41,13 @@ ASSIGNMENT_OPERATOR: ':=';
 
 //--- PARSER: ---
 stylesheet: (variableAssignment | styleRule)*;
-variableAssignment: CAPITAL_IDENT ASSIGNMENT_OPERATOR (COLOR | PIXELSIZE | SCALAR | PERCENTAGE | TRUE | FALSE) SEMICOLON;
+variableAssignment: variableReference ASSIGNMENT_OPERATOR value SEMICOLON;
 styleRule: selector OPEN_BRACE declaration* CLOSE_BRACE;
 selector: ID_IDENT | CLASS_IDENT | LOWER_IDENT;
-declaration: property COLON (variableReference | value) SEMICOLON;
+declaration: property COLON (variableReference | value | expression*) SEMICOLON;
 property: LOWER_IDENT;
 value: COLOR #colorLiteral | PIXELSIZE #pixelLiteral | SCALAR #scalarLiteral | PERCENTAGE #percentageLiteral | (TRUE | FALSE) #boolLiteral;
 variableReference: CAPITAL_IDENT;
-
-
+expression: term ((PLUS | MIN) term)*;
+term: factor (MUL factor)*;
+factor: (variableReference | value) | '(' expression ')';

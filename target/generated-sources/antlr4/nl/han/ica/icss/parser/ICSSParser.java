@@ -101,7 +101,6 @@ public class ICSSParser extends Parser {
 	}
 
 	public static class StylesheetContext extends ParserRuleContext {
-		public TerminalNode EOF() { return getToken(ICSSParser.EOF, 0); }
 		public List<VariableAssignmentContext> variableAssignment() {
 			return getRuleContexts(VariableAssignmentContext.class);
 		}
@@ -135,10 +134,10 @@ public class ICSSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(18); 
+			setState(20);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			do {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID_IDENT) | (1L << CLASS_IDENT) | (1L << LOWER_IDENT) | (1L << CAPITAL_IDENT))) != 0)) {
 				{
 				setState(18);
 				_errHandler.sync(this);
@@ -161,12 +160,10 @@ public class ICSSParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(20); 
+				setState(22);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID_IDENT) | (1L << CLASS_IDENT) | (1L << LOWER_IDENT) | (1L << CAPITAL_IDENT))) != 0) );
-			setState(22);
-			match(EOF);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -181,15 +178,14 @@ public class ICSSParser extends Parser {
 	}
 
 	public static class VariableAssignmentContext extends ParserRuleContext {
-		public TerminalNode CAPITAL_IDENT() { return getToken(ICSSParser.CAPITAL_IDENT, 0); }
+		public VariableReferenceContext variableReference() {
+			return getRuleContext(VariableReferenceContext.class,0);
+		}
 		public TerminalNode ASSIGNMENT_OPERATOR() { return getToken(ICSSParser.ASSIGNMENT_OPERATOR, 0); }
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
 		public TerminalNode SEMICOLON() { return getToken(ICSSParser.SEMICOLON, 0); }
-		public TerminalNode COLOR() { return getToken(ICSSParser.COLOR, 0); }
-		public TerminalNode PIXELSIZE() { return getToken(ICSSParser.PIXELSIZE, 0); }
-		public TerminalNode SCALAR() { return getToken(ICSSParser.SCALAR, 0); }
-		public TerminalNode PERCENTAGE() { return getToken(ICSSParser.PERCENTAGE, 0); }
-		public TerminalNode TRUE() { return getToken(ICSSParser.TRUE, 0); }
-		public TerminalNode FALSE() { return getToken(ICSSParser.FALSE, 0); }
 		public VariableAssignmentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -207,25 +203,16 @@ public class ICSSParser extends Parser {
 	public final VariableAssignmentContext variableAssignment() throws RecognitionException {
 		VariableAssignmentContext _localctx = new VariableAssignmentContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_variableAssignment);
-		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+			setState(23);
+			variableReference();
 			setState(24);
-			match(CAPITAL_IDENT);
-			setState(25);
 			match(ASSIGNMENT_OPERATOR);
+			setState(25);
+			value();
 			setState(26);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TRUE) | (1L << FALSE) | (1L << PIXELSIZE) | (1L << PERCENTAGE) | (1L << SCALAR) | (1L << COLOR))) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			setState(27);
 			match(SEMICOLON);
 			}
 		}
@@ -273,25 +260,25 @@ public class ICSSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(29);
+			setState(28);
 			selector();
-			setState(30);
+			setState(29);
 			match(OPEN_BRACE);
-			setState(34);
+			setState(33);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==LOWER_IDENT) {
 				{
 				{
-				setState(31);
+				setState(30);
 				declaration();
 				}
 				}
-				setState(36);
+				setState(35);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(37);
+			setState(36);
 			match(CLOSE_BRACE);
 			}
 		}
@@ -331,7 +318,7 @@ public class ICSSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(38);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID_IDENT) | (1L << CLASS_IDENT) | (1L << LOWER_IDENT))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -386,16 +373,16 @@ public class ICSSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(41);
+			setState(40);
 			property();
-			setState(42);
+			setState(41);
 			match(COLON);
-			setState(45);
+			setState(44);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case CAPITAL_IDENT:
 				{
-				setState(43);
+				setState(42);
 				variableReference();
 				}
 				break;
@@ -406,14 +393,14 @@ public class ICSSParser extends Parser {
 			case SCALAR:
 			case COLOR:
 				{
-				setState(44);
+				setState(43);
 				value();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(47);
+			setState(46);
 			match(SEMICOLON);
 			}
 		}
@@ -450,7 +437,7 @@ public class ICSSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(49);
+			setState(48);
 			match(LOWER_IDENT);
 			}
 		}
@@ -543,14 +530,14 @@ public class ICSSParser extends Parser {
 		enterRule(_localctx, 12, RULE_value);
 		int _la;
 		try {
-			setState(56);
+			setState(55);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case COLOR:
 				_localctx = new ColorLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(51);
+				setState(50);
 				match(COLOR);
 				}
 				break;
@@ -558,7 +545,7 @@ public class ICSSParser extends Parser {
 				_localctx = new PixelLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(52);
+				setState(51);
 				match(PIXELSIZE);
 				}
 				break;
@@ -566,7 +553,7 @@ public class ICSSParser extends Parser {
 				_localctx = new ScalarLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(53);
+				setState(52);
 				match(SCALAR);
 				}
 				break;
@@ -574,7 +561,7 @@ public class ICSSParser extends Parser {
 				_localctx = new PercentageLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(54);
+				setState(53);
 				match(PERCENTAGE);
 				}
 				break;
@@ -583,7 +570,7 @@ public class ICSSParser extends Parser {
 				_localctx = new BoolLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(55);
+				setState(54);
 				_la = _input.LA(1);
 				if ( !(_la==TRUE || _la==FALSE) ) {
 				_errHandler.recoverInline(this);
@@ -632,7 +619,7 @@ public class ICSSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
+			setState(57);
 			match(CAPITAL_IDENT);
 			}
 		}
@@ -648,23 +635,22 @@ public class ICSSParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31?\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\3\2\3\2\6\2\25\n\2"+
-		"\r\2\16\2\26\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4#\n\4\f\4\16\4"+
-		"&\13\4\3\4\3\4\3\5\3\5\3\6\3\6\3\6\3\6\5\6\60\n\6\3\6\3\6\3\7\3\7\3\b"+
-		"\3\b\3\b\3\b\3\b\5\b;\n\b\3\t\3\t\3\t\2\2\n\2\4\6\b\n\f\16\20\2\5\3\2"+
-		"\7\f\3\2\r\17\3\2\7\b\2>\2\24\3\2\2\2\4\32\3\2\2\2\6\37\3\2\2\2\b)\3\2"+
-		"\2\2\n+\3\2\2\2\f\63\3\2\2\2\16:\3\2\2\2\20<\3\2\2\2\22\25\5\4\3\2\23"+
-		"\25\5\6\4\2\24\22\3\2\2\2\24\23\3\2\2\2\25\26\3\2\2\2\26\24\3\2\2\2\26"+
-		"\27\3\2\2\2\27\30\3\2\2\2\30\31\7\2\2\3\31\3\3\2\2\2\32\33\7\20\2\2\33"+
-		"\34\7\31\2\2\34\35\t\2\2\2\35\36\7\24\2\2\36\5\3\2\2\2\37 \5\b\5\2 $\7"+
-		"\22\2\2!#\5\n\6\2\"!\3\2\2\2#&\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%\'\3\2\2\2"+
-		"&$\3\2\2\2\'(\7\23\2\2(\7\3\2\2\2)*\t\3\2\2*\t\3\2\2\2+,\5\f\7\2,/\7\25"+
-		"\2\2-\60\5\20\t\2.\60\5\16\b\2/-\3\2\2\2/.\3\2\2\2\60\61\3\2\2\2\61\62"+
-		"\7\24\2\2\62\13\3\2\2\2\63\64\7\17\2\2\64\r\3\2\2\2\65;\7\f\2\2\66;\7"+
-		"\t\2\2\67;\7\13\2\28;\7\n\2\29;\t\4\2\2:\65\3\2\2\2:\66\3\2\2\2:\67\3"+
-		"\2\2\2:8\3\2\2\2:9\3\2\2\2;\17\3\2\2\2<=\7\20\2\2=\21\3\2\2\2\7\24\26"+
-		"$/:";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31>\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\3\2\3\2\7\2\25\n\2"+
+		"\f\2\16\2\30\13\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4\"\n\4\f\4\16\4%"+
+		"\13\4\3\4\3\4\3\5\3\5\3\6\3\6\3\6\3\6\5\6/\n\6\3\6\3\6\3\7\3\7\3\b\3\b"+
+		"\3\b\3\b\3\b\5\b:\n\b\3\t\3\t\3\t\2\2\n\2\4\6\b\n\f\16\20\2\4\3\2\r\17"+
+		"\3\2\7\b\2=\2\26\3\2\2\2\4\31\3\2\2\2\6\36\3\2\2\2\b(\3\2\2\2\n*\3\2\2"+
+		"\2\f\62\3\2\2\2\169\3\2\2\2\20;\3\2\2\2\22\25\5\4\3\2\23\25\5\6\4\2\24"+
+		"\22\3\2\2\2\24\23\3\2\2\2\25\30\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27"+
+		"\3\3\2\2\2\30\26\3\2\2\2\31\32\5\20\t\2\32\33\7\31\2\2\33\34\5\16\b\2"+
+		"\34\35\7\24\2\2\35\5\3\2\2\2\36\37\5\b\5\2\37#\7\22\2\2 \"\5\n\6\2! \3"+
+		"\2\2\2\"%\3\2\2\2#!\3\2\2\2#$\3\2\2\2$&\3\2\2\2%#\3\2\2\2&\'\7\23\2\2"+
+		"\'\7\3\2\2\2()\t\2\2\2)\t\3\2\2\2*+\5\f\7\2+.\7\25\2\2,/\5\20\t\2-/\5"+
+		"\16\b\2.,\3\2\2\2.-\3\2\2\2/\60\3\2\2\2\60\61\7\24\2\2\61\13\3\2\2\2\62"+
+		"\63\7\17\2\2\63\r\3\2\2\2\64:\7\f\2\2\65:\7\t\2\2\66:\7\13\2\2\67:\7\n"+
+		"\2\28:\t\3\2\29\64\3\2\2\29\65\3\2\2\29\66\3\2\2\29\67\3\2\2\298\3\2\2"+
+		"\2:\17\3\2\2\2;<\7\20\2\2<\21\3\2\2\2\7\24\26#.9";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

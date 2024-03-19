@@ -4,6 +4,7 @@ import java.util.Properties;
 import java.util.Stack;
 
 
+import com.google.errorprone.annotations.Var;
 import nl.han.ica.datastructures.IHANStack;
 import nl.han.ica.icss.ast.*;
 import nl.han.ica.icss.ast.literals.*;
@@ -90,7 +91,7 @@ public class ASTListener extends ICSSBaseListener {
 
 	@Override
 	public void enterProperty(ICSSParser.PropertyContext ctx) {
-		PropertyName property = new PropertyName();
+		PropertyName property = new PropertyName(ctx.getText());
 		currentContainer.push(property);
 
 	}
@@ -101,6 +102,20 @@ public class ASTListener extends ICSSBaseListener {
 		currentContainer.peek().addChild(property);
 	}
 
+//	@Override
+//	public void enterValue(ICSSParser.ValueContext ctx) {
+//		if(ctx.COLOR() != null) {
+//		}
+//		else if(ctx.PERCENTAGE() != null) {
+//		}
+//		else if(ctx.PIXELSIZE() != null) {
+//		}
+//		else if(ctx.SCALAR() != null) {
+//		}
+//		else if(ctx.COLOR() != null) {
+//		}
+//
+//	}
 	@Override
 	public void enterBoolLiteral(ICSSParser.BoolLiteralContext ctx) {
 		BoolLiteral bool = new BoolLiteral(ctx.getText());
@@ -161,4 +176,27 @@ public class ASTListener extends ICSSBaseListener {
 		currentContainer.peek().addChild(scalar);
 	}
 
+	@Override
+	public void enterVariableAssignment(ICSSParser.VariableAssignmentContext ctx) {
+		VariableAssignment variableAssignment = new VariableAssignment();
+		currentContainer.push(variableAssignment);
+	}
+
+	@Override
+	public void exitVariableAssignment(ICSSParser.VariableAssignmentContext ctx) {
+		VariableAssignment variableAssignment = (VariableAssignment) currentContainer.pop();
+		currentContainer.peek().addChild(variableAssignment);
+	}
+
+	@Override
+	public void enterVariableReference(ICSSParser.VariableReferenceContext ctx) {
+		VariableReference variableReference = new VariableReference(ctx.getText());
+		currentContainer.push(variableReference);
+	}
+
+	@Override
+	public void exitVariableReference(ICSSParser.VariableReferenceContext ctx) {
+		VariableReference variableReference = (VariableReference) currentContainer.pop();
+		currentContainer.peek().addChild(variableReference);
+	}
 }
