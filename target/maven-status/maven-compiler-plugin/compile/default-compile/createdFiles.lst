@@ -6,7 +6,6 @@ nl\han\ica\icss\parser\ICSSParser$DeclarationContext.class
 nl\han\ica\icss\ast\types\ExpressionType.class
 nl\han\ica\icss\ast\AST.class
 nl\han\ica\icss\gui\MainGui$3.class
-nl\han\ica\icss\parser\ICSSParser$ElementContext.class
 nl\han\ica\icss\ast\VariableAssignment.class
 nl\han\ica\icss\ast\literals\ColorLiteral.class
 nl\han\ica\icss\ast\operations\MultiplyOperation.class
@@ -18,6 +17,8 @@ nl\han\ica\icss\gui\MainGui$6.class
 nl\han\ica\icss\gui\FeedbackPane.class
 nl\han\ica\icss\gui\ASTPane.class
 nl\han\ica\icss\ast\selectors\ClassSelector.class
+nl\han\ica\icss\parser\ICSSParser$PercentageLiteralContext.class
+nl\han\ica\icss\parser\ICSSParser$StyleRuleContext.class
 nl\han\ica\icss\gui\MainGui$2.class
 nl\han\ica\icss\parser\ICSSParser$PropertyContext.class
 nl\han\ica\icss\parser\ICSSParser$SelectorContext.class
@@ -25,6 +26,7 @@ nl\han\ica\icss\ast\ASTNode.class
 nl\han\ica\icss\ast\ElseClause.class
 nl\han\ica\icss\gui\Main.class
 nl\han\ica\icss\ast\literals\ScalarLiteral.class
+nl\han\ica\icss\parser\ICSSParser$PixelLiteralContext.class
 nl\han\ica\datastructures\IHANStack.class
 nl\han\ica\icss\parser\ICSSParser$StylesheetContext.class
 nl\han\ica\icss\parser\ICSSListener.class
@@ -35,8 +37,11 @@ nl\han\ica\icss\checker\Checker.class
 nl\han\ica\icss\ast\literals\BoolLiteral.class
 nl\han\ica\icss\ast\literals\PercentageLiteral.class
 nl\han\ica\icss\parser\ICSSLexer.class
+nl\han\ica\icss\parser\ICSSParser$BoolLiteralContext.class
+nl\han\ica\icss\parser\ICSSParser$ScalarLiteralContext.class
 nl\han\ica\icss\gui\MainGui$8.class
 nl\han\ica\icss\gui\OutputPane.class
+nl\han\ica\icss\parser\ICSSParser$ColorLiteralContext.class
 nl\han\ica\icss\gui\MainGui$4.class
 nl\han\ica\icss\ast\Declaration.class
 nl\han\ica\icss\generator\Generator.class

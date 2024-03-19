@@ -40,13 +40,13 @@ public class ICSSBaseListener implements ICSSListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterElement(ICSSParser.ElementContext ctx) { }
+	@Override public void enterStyleRule(ICSSParser.StyleRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitElement(ICSSParser.ElementContext ctx) { }
+	@Override public void exitStyleRule(ICSSParser.StyleRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -88,13 +88,61 @@ public class ICSSBaseListener implements ICSSListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterValue(ICSSParser.ValueContext ctx) { }
+	@Override public void enterColorLiteral(ICSSParser.ColorLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitValue(ICSSParser.ValueContext ctx) { }
+	@Override public void exitColorLiteral(ICSSParser.ColorLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPixelLiteral(ICSSParser.PixelLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPixelLiteral(ICSSParser.PixelLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScalarLiteral(ICSSParser.ScalarLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScalarLiteral(ICSSParser.ScalarLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPercentageLiteral(ICSSParser.PercentageLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPercentageLiteral(ICSSParser.PercentageLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolLiteral(ICSSParser.BoolLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolLiteral(ICSSParser.BoolLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -42,20 +42,13 @@ MUL: '*';
 ASSIGNMENT_OPERATOR: ':=';
 
 //--- PARSER: ---
-stylesheet: (variableAssignment | styleRule)+ EOF;
-
+stylesheet: (variableAssignment | styleRule)*;
 variableAssignment: CAPITAL_IDENT ASSIGNMENT_OPERATOR (COLOR | PIXELSIZE | SCALAR | PERCENTAGE | TRUE | FALSE) SEMICOLON;
-
 styleRule: selector OPEN_BRACE declaration* CLOSE_BRACE;
-
 selector: ID_IDENT | CLASS_IDENT | LOWER_IDENT;
-
 declaration: property COLON (variableReference | value) SEMICOLON;
-
 property: LOWER_IDENT;
-
-value: COLOR | PIXELSIZE | SCALAR | PERCENTAGE | TRUE | FALSE;
-
+value: COLOR #colorLiteral | PIXELSIZE #pixelLiteral | SCALAR #scalarLiteral | PERCENTAGE #percentageLiteral | (TRUE | FALSE) #boolLiteral;
 variableReference: CAPITAL_IDENT;
 
 
