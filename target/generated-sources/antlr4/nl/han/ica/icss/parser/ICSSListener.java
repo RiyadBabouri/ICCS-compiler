@@ -38,15 +38,41 @@ public interface ICSSListener extends ParseTreeListener {
 	 */
 	void exitStyleRule(ICSSParser.StyleRuleContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ICSSParser#selector}.
+	 * Enter a parse tree produced by the {@code idSelector}
+	 * labeled alternative in {@link ICSSParser#selector}.
 	 * @param ctx the parse tree
 	 */
-	void enterSelector(ICSSParser.SelectorContext ctx);
+	void enterIdSelector(ICSSParser.IdSelectorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ICSSParser#selector}.
+	 * Exit a parse tree produced by the {@code idSelector}
+	 * labeled alternative in {@link ICSSParser#selector}.
 	 * @param ctx the parse tree
 	 */
-	void exitSelector(ICSSParser.SelectorContext ctx);
+	void exitIdSelector(ICSSParser.IdSelectorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code classSelector}
+	 * labeled alternative in {@link ICSSParser#selector}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassSelector(ICSSParser.ClassSelectorContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code classSelector}
+	 * labeled alternative in {@link ICSSParser#selector}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassSelector(ICSSParser.ClassSelectorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code tagSelector}
+	 * labeled alternative in {@link ICSSParser#selector}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagSelector(ICSSParser.TagSelectorContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code tagSelector}
+	 * labeled alternative in {@link ICSSParser#selector}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagSelector(ICSSParser.TagSelectorContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ICSSParser#declaration}.
 	 * @param ctx the parse tree
@@ -80,42 +106,6 @@ public interface ICSSListener extends ParseTreeListener {
 	 */
 	void exitColorLiteral(ICSSParser.ColorLiteralContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code pixelLiteral}
-	 * labeled alternative in {@link ICSSParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void enterPixelLiteral(ICSSParser.PixelLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code pixelLiteral}
-	 * labeled alternative in {@link ICSSParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void exitPixelLiteral(ICSSParser.PixelLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code scalarLiteral}
-	 * labeled alternative in {@link ICSSParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void enterScalarLiteral(ICSSParser.ScalarLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code scalarLiteral}
-	 * labeled alternative in {@link ICSSParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void exitScalarLiteral(ICSSParser.ScalarLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code percentageLiteral}
-	 * labeled alternative in {@link ICSSParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void enterPercentageLiteral(ICSSParser.PercentageLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code percentageLiteral}
-	 * labeled alternative in {@link ICSSParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void exitPercentageLiteral(ICSSParser.PercentageLiteralContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code boolLiteral}
 	 * labeled alternative in {@link ICSSParser#value}.
 	 * @param ctx the parse tree
@@ -128,6 +118,42 @@ public interface ICSSListener extends ParseTreeListener {
 	 */
 	void exitBoolLiteral(ICSSParser.BoolLiteralContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code pixelLiteral}
+	 * labeled alternative in {@link ICSSParser#calcValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterPixelLiteral(ICSSParser.PixelLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code pixelLiteral}
+	 * labeled alternative in {@link ICSSParser#calcValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitPixelLiteral(ICSSParser.PixelLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code scalarLiteral}
+	 * labeled alternative in {@link ICSSParser#calcValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterScalarLiteral(ICSSParser.ScalarLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code scalarLiteral}
+	 * labeled alternative in {@link ICSSParser#calcValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitScalarLiteral(ICSSParser.ScalarLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code percentageLiteral}
+	 * labeled alternative in {@link ICSSParser#calcValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterPercentageLiteral(ICSSParser.PercentageLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code percentageLiteral}
+	 * labeled alternative in {@link ICSSParser#calcValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitPercentageLiteral(ICSSParser.PercentageLiteralContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ICSSParser#variableReference}.
 	 * @param ctx the parse tree
 	 */
@@ -137,4 +163,64 @@ public interface ICSSListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableReference(ICSSParser.VariableReferenceContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code cVal}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCVal(ICSSParser.CValContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code cVal}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCVal(ICSSParser.CValContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code multiplyOperation}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplyOperation(ICSSParser.MultiplyOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code multiplyOperation}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplyOperation(ICSSParser.MultiplyOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code addOperation}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddOperation(ICSSParser.AddOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code addOperation}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddOperation(ICSSParser.AddOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code var}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterVar(ICSSParser.VarContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code var}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitVar(ICSSParser.VarContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code subtractOperation}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubtractOperation(ICSSParser.SubtractOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code subtractOperation}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubtractOperation(ICSSParser.SubtractOperationContext ctx);
 }

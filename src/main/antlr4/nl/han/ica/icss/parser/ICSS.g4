@@ -42,13 +42,21 @@ ASSIGNMENT_OPERATOR: ':=';
 
 //--- PARSER: ---
 stylesheet: (variableAssignment | styleRule)*;
-variableAssignment: variableReference ASSIGNMENT_OPERATOR value SEMICOLON;
+variableAssignment: variableReference ASSIGNMENT_OPERATOR (expression | value) SEMICOLON;
 styleRule: selector OPEN_BRACE declaration* CLOSE_BRACE;
-selector: ID_IDENT | CLASS_IDENT | LOWER_IDENT;
-declaration: property COLON (variableReference | value | expression*) SEMICOLON;
+selector: ID_IDENT #idSelector | CLASS_IDENT #classSelector | LOWER_IDENT #tagSelector;
+declaration: property COLON (value | expression) SEMICOLON;
 property: LOWER_IDENT;
-value: COLOR #colorLiteral | PIXELSIZE #pixelLiteral | SCALAR #scalarLiteral | PERCENTAGE #percentageLiteral | (TRUE | FALSE) #boolLiteral;
+value: COLOR #colorLiteral |  (TRUE | FALSE) #boolLiteral;
+calcValue: PIXELSIZE #pixelLiteral | SCALAR #scalarLiteral | PERCENTAGE #percentageLiteral;
 variableReference: CAPITAL_IDENT;
-expression: term ((PLUS | MIN) term)*;
-term: factor ((MUL | DIV) factor)*;
-factor: (variableReference | value) | '(' expression ')';
+
+expression:
+        calcValue #cVal | variableReference #var
+        | expression PLUS expression #addOperation
+        | expression MIN expression #subtractOperation
+        | expression MUL expression #multiplyOperation;
+
+//operation: term ((PLUS | MIN) term)*;
+//term: factor ((MUL | DIV) factor)*;
+//factor: (variableReference | value) | '(' operation ')';
