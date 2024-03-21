@@ -35,5 +35,10 @@ public class Checker {
                 declaration.setError("Property 'width' must be a PixelLiteral");
             }
         }
+        else if (declaration.property.name.equals("color") || declaration.property.name.equals("background-color")) {
+            if (!(declaration.expression instanceof PixelLiteral)) {
+                declaration.setError("Property " + declaration.property.name + "must be a PixelLiteral");
+            }
+        }
     }
 }

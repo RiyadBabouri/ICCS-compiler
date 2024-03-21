@@ -94,6 +94,16 @@ public interface ICSSListener extends ParseTreeListener {
 	 */
 	void exitProperty(ICSSParser.PropertyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ICSSParser#booleanLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanLiteral(ICSSParser.BooleanLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ICSSParser#booleanLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanLiteral(ICSSParser.BooleanLiteralContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code colorLiteral}
 	 * labeled alternative in {@link ICSSParser#value}.
 	 * @param ctx the parse tree
@@ -223,4 +233,34 @@ public interface ICSSListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSubtractOperation(ICSSParser.SubtractOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ICSSParser#styleRuleBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterStyleRuleBody(ICSSParser.StyleRuleBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ICSSParser#styleRuleBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitStyleRuleBody(ICSSParser.StyleRuleBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ICSSParser#ifClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfClause(ICSSParser.IfClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ICSSParser#ifClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfClause(ICSSParser.IfClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ICSSParser#elseClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseClause(ICSSParser.ElseClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ICSSParser#elseClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseClause(ICSSParser.ElseClauseContext ctx);
 }

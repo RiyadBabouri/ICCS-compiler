@@ -43,20 +43,21 @@ ASSIGNMENT_OPERATOR: ':=';
 //--- PARSER: ---
 stylesheet: (variableAssignment | styleRule)*;
 variableAssignment: variableReference ASSIGNMENT_OPERATOR (expression | value) SEMICOLON;
-styleRule: selector OPEN_BRACE declaration* CLOSE_BRACE;
+styleRule: selector OPEN_BRACE styleRuleBody CLOSE_BRACE;
 selector: ID_IDENT #idSelector | CLASS_IDENT #classSelector | LOWER_IDENT #tagSelector;
-declaration: property COLON (value | expression) SEMICOLON;
+declaration: property COLON (expression | value) SEMICOLON;
 property: LOWER_IDENT;
-value: COLOR #colorLiteral |  (TRUE | FALSE) #boolLiteral;
+booleanLiteral: TRUE | FALSE;
+value: COLOR #colorLiteral |  booleanLiteral #boolLiteral;
 calcValue: PIXELSIZE #pixelLiteral | SCALAR #scalarLiteral | PERCENTAGE #percentageLiteral;
 variableReference: CAPITAL_IDENT;
-
 expression:
         calcValue #cVal | variableReference #var
+        | expression MUL expression #multiplyOperation
         | expression PLUS expression #addOperation
-        | expression MIN expression #subtractOperation
-        | expression MUL expression #multiplyOperation;
+        | expression MIN expression #subtractOperation;
 
-//operation: term ((PLUS | MIN) term)*;
-//term: factor ((MUL | DIV) factor)*;
-//factor: (variableReference | value) | '(' operation ')';
+styleRuleBody: (declaration | variableAssignment | ifClause)*;
+ifClause: IF BOX_BRACKET_OPEN (variableReference | booleanLiteral) BOX_BRACKET_CLOSE OPEN_BRACE styleRuleBody CLOSE_BRACE elseClause?;
+elseClause: ELSE OPEN_BRACE styleRuleBody CLOSE_BRACE;
+
