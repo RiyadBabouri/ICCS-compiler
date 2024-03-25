@@ -10,7 +10,7 @@ public class HANStack<T> implements IHANStack<T> {
 
     @Override
     public void push(T value) {
-        list.add(value);
+        list.addFirst(value);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class HANStack<T> implements IHANStack<T> {
         if (list.size() == 0) {
             throw new EmptyStackException();
         }
-        return list.remove(list.size() - 1);
+        return list.removeFirst();
 
     }
 
@@ -27,7 +27,7 @@ public class HANStack<T> implements IHANStack<T> {
         if (list.size() == 0) {
             throw new EmptyStackException();
         }
-        return list.get(list.size() - 1);
+        return list.getFirst();
 
     }
 }

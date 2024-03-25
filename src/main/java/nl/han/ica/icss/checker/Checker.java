@@ -29,15 +29,14 @@ public class Checker {
                 checkVariableAssignment(child);
             } else if (child instanceof Stylerule) {
                 variableTypes.addFirst(new HashMap<>());
-                checkStylerule(child);
+                checkStyleRule(child);
                 variableTypes.removeFirst();
             }
         }
-
         variableTypes.clear();
     }
 
-    private void checkStylerule(ASTNode astNode) {
+    private void checkStyleRule(ASTNode astNode) {
         Stylerule stylerule = (Stylerule) astNode;
         checkRuleBody(stylerule.body);
     }
@@ -158,10 +157,10 @@ public class Checker {
                 operation.setError("Multiplying is only allowed with at least one scalar value.");
                 return ExpressionType.UNDEFINED;
             } else {
-                if (right != ExpressionType.SCALAR) {
-                    return right;
-                } else {
+                if (left != ExpressionType.SCALAR) {
                     return left;
+                } else {
+                    return right;
                 }
             }
         } else if ((operation instanceof SubtractOperation || operation instanceof AddOperation) && left != right) {
