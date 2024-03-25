@@ -148,13 +148,30 @@ public class Checker {
             right = checkExpressionType(operation.rhs);
         }
 
-        if (left == ExpressionType.BOOL || right == ExpressionType.BOOL) {
-            operation.setError("Booleans are not allowed in an operation.");
+        if (left == ExpressionType.COLOR || right == ExpressionType.COLOR ||
+                left == ExpressionType.BOOL || right == ExpressionType.BOOL) {
+            operation.setError("Booleans and colors are not allowed in an operation.");
+            return ExpressionType.UNDEFINED;
+        }
+        if (operation instanceof MultiplyOperation) {
+            if (left != ExpressionType.SCALAR && right != ExpressionType.SCALAR) {
+                operation.setError("Multiplying is only allowed with at least one scalar value.");
+                return ExpressionType.UNDEFINED;
+            } else {
+                if (right != ExpressionType.SCALAR) {
+                    return right;
+                } else {
+                    return left;
+                }
+            }
+        } else if ((operation instanceof SubtractOperation || operation instanceof AddOperation) && left != right) {
+            operation.setError("Add and subtract operations are only allowed with the same type literal.");
             return ExpressionType.UNDEFINED;
         }
 
         return left;
     }
+
 
     private ExpressionType checkExpressionType(Expression expression) {
         if (expression instanceof VariableReference) {
@@ -183,6 +200,7 @@ public class Checker {
 
         return expressionType;
     }
+
 
     private void putVariableType(String name, ExpressionType type) {
         variableTypes.getFirst().put(name, type);
